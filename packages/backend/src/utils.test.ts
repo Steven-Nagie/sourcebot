@@ -34,6 +34,10 @@ test('should filter repos by micromatch pattern', () => {
   const unfilteredRepos1 = excludeReposByName(testNames.map(n => (createRepository(n))), ['**zfmno**']);
   expect(unfilteredRepos1.length).toBe(10);
   expect(unfilteredRepos1.map(r => r.name)).toEqual(testNames);
+  // one character off
+  const unfilteredRepos2 = excludeReposByName(testNames.map(n => (createRepository(n))), ['abcdefg/ieieiowowieu8383/fvas-eer-wwwer']);
+  expect(unfilteredRepos2.length).toBe(10);
+  expect(unfilteredRepos2.map(r => r.name)).toEqual(testNames);
 
   // good glob patterns
   const filteredRepos = excludeReposByName(testNames.map(n => (createRepository(n))), ['**/zfmno/**']);
